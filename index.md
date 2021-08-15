@@ -96,8 +96,7 @@ The function is defined using def followed by the name of the function, in this 
 ```markdown
 @staticmethod
 def read_data_from_file(file_name):
-    """
-    Reads data from a file into a list of dictionary rows
+    """ Reads data from a file into a list of dictionary rows
 
     :param file_name: (string) strFileName = ToDoFile.txt
     :return: (list) dictionary rows
@@ -105,9 +104,10 @@ def read_data_from_file(file_name):
     lstTable = []
     objFile = open(file_name, "r")
     for row in objFile:
-        lstRow = row.split(",")
-        dicRow = {"Task": lstRow[0].strip(), "Priority": lstRow[1].strip()}
-        lstTable.append(dicRow)
+        if "," in row:
+            lstRow = row.split(",")
+            dicRow = {"Task": lstRow[0].strip(), "Priority": lstRow[1].strip()}
+            lstTable.append(dicRow)
     objFile.close()
     return lstTable
 ```
